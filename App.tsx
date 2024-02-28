@@ -1,118 +1,192 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import * as React from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
+  Button,
+  FlatList,
+  Image,
   Text,
-  useColorScheme,
+  TextInput,
+  Touchable,
+  TouchableOpacity,
   View,
 } from 'react-native';
+import {Avatar} from './src';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function HomeScreen({navigation}: any) {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
+    <View
+      style={{
+        flex: 1,
+
+        paddingTop: 20,
+        backgroundColor: '#FFF',
+        paddingHorizontal: 24,
+      }}>
+      <View style={{flexDirection: 'column', alignItems: 'center'}}>
+        <Avatar></Avatar>
+      </View>
+      <Text style={{color: '#2E2E5D', fontSize: 20}}>Register</Text>
+      <TextInput
+        style={{
+          width: '100%',
+          height: 48,
+          borderRadius: 10,
+          borderColor: '#F5F5FA',
+          backgroundColor: '#F5F5FA',
+          marginVertical: 20,
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+        }}
+        placeholder="Email"></TextInput>
+      <TextInput
+        style={{
+          width: '100%',
+          height: 48,
+          borderRadius: 10,
+          borderColor: '#F5F5FA',
+          backgroundColor: '#F5F5FA',
+          marginVertical: 20,
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+        }}
+        placeholder="Password"></TextInput>
+      <TextInput
+        style={{
+          width: '100%',
+          height: 48,
+          borderRadius: 10,
+          borderColor: '#F5F5FA',
+          backgroundColor: '#F5F5FA',
+          marginVertical: 20,
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+        }}
+        placeholder="Date of Birth"></TextInput>
+      <Text>
+        By signing up, you agree to our{' '}
+        <Text style={{color: 'red'}}>Terms, Data Policy</Text> and{' '}
+        <Text style={{color: 'red'}}>Cookies Policy</Text>.
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#4838D1',
+          width: '100%',
+          height: 48,
+          marginVertical: 20,
+          borderRadius: 10,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => navigation.navigate('Details')}>
+        <Text style={{color: '#fff'}}>Register</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: '#fff4',
+          width: '100%',
+          height: 48,
+          marginVertical: 20,
+          borderRadius: 10,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderBottomWidth: 1,
+        }}
+        onPress={() => navigation.navigate('Details')}>
+        <Text style={{color: '#4838D1'}}>cancel</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+function DetailsScreen() {
+  // Danh sách hình ảnh
+  const imageList = [
+    {
+      id: '1',
+      source:
+        'https://inkythuatso.com/uploads/thumbnails/800/2023/03/1-hinh-anh-ngay-moi-hanh-phuc-sieu-cute-inkythuatso-09-13-35-50.jpg',
+    },
+    {
+      id: '2',
+      source:
+        'https://inkythuatso.com/uploads/thumbnails/800/2023/03/1-hinh-anh-ngay-moi-hanh-phuc-sieu-cute-inkythuatso-09-13-35-50.jpg',
+    },
+    {
+      id: '3',
+      source:
+        'https://inkythuatso.com/uploads/thumbnails/800/2023/03/1-hinh-anh-ngay-moi-hanh-phuc-sieu-cute-inkythuatso-09-13-35-50.jpg',
+    },
+    {
+      id: '4',
+      source:
+        'https://inkythuatso.com/uploads/thumbnails/800/2023/03/1-hinh-anh-ngay-moi-hanh-phuc-sieu-cute-inkythuatso-09-13-35-50.jpg',
+    },
+    {
+      id: '5',
+      source:
+        'https://inkythuatso.com/uploads/thumbnails/800/2023/03/1-hinh-anh-ngay-moi-hanh-phuc-sieu-cute-inkythuatso-09-13-35-50.jpg',
+    },
+    {
+      id: '6',
+      source:
+        'https://inkythuatso.com/uploads/thumbnails/800/2023/03/1-hinh-anh-ngay-moi-hanh-phuc-sieu-cute-inkythuatso-09-13-35-50.jpg',
+    },
+  ];
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <View style={{flex: 1, justifyContent: 'center'}}>
+      <Text
+        style={{
+          marginHorizontal: 20,
+          color: 'black',
+          fontWeight: '500',
+          marginTop: 20,
+        }}>
+        Recommended For You
+      </Text>
+      <FlatList
+        data={imageList}
+        keyExtractor={item => item.id}
+        horizontal
+        renderItem={({item}) => (
+          <Image
+            source={{uri: item.source}}
+            style={{width: 200, height: 300, margin: 10}}
+          />
+        )}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          options={{
+            headerShown: false,
+          }}
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          name="Details"
+          options={{
+            headerTitle: 'AudiBooks',
+            headerTitleStyle: {
+              color: '#4838D1',
+            },
+          }}
+          component={DetailsScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 export default App;
